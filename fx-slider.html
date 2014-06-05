@@ -1,0 +1,89 @@
+<foxui-element name="fx-slider" attributes="auto loop speed index indicator">
+	<fox-template>
+		<div id="fx-slider-container">
+			<div id="fx-slider-inner">
+				<content></content>
+			</div>
+		</div>
+		<div id="fx-slider-indicator" rv-show="indicator">
+			<span rv-each-todo="arrIndicator"> </span>
+		</div>
+	</fox-template>
+
+	<script src="swipe.js"></script>
+	<script>
+		
+		function setup() {
+			var self = this;
+			
+			this['swipe'] = new Swipe(this.$['fx-slider-container'], {
+				index : parseInt(this.index) || 0,
+				speed : parseInt(this.speed) || 400,
+				auto : parseInt(this.auto) || 3000,
+				continuous : this.loop || true,
+				disableScroll : false,
+				stopPropagation : false,
+				callback : function(index, elem) {
+					$("span", self.$['fx-slider-indicator']).removeClass("active").eq(index).addClass("active");
+					xtag.fireEvent(self, 'change', {
+						'detail' : {
+							index : index,
+							el : elem
+						}
+					});
+					self.index = index;
+
+				},
+				transitionEnd : function(index, elem) {
+				}
+			});
+
+			var arrIndicator = [];
+
+			for (var i = 0; i < this.$['fx-slider-inner'].childElementCount; i++) {
+				arrIndicator.push("11");
+			}
+
+			this.arrIndicator = arrIndicator;
+			$("span", self.$['fx-slider-indicator']).removeClass("active").eq(this.index).addClass("active");
+		}
+		
+		fox('fx-slider', {
+
+			lifecycle : {
+				created : function() {
+
+				},
+				inserted : function() {
+					
+					setup.call(this);
+				},
+				attributeChanged : function(attr, oldVal, newValue) {
+					
+					switch(attr) {
+						case 'speed':
+							this['swipe'].setSpeed(newValue);
+							break;
+						case 'auto':
+							this['swipe'].setDelay(newValue);
+							break;
+						case 'index':
+							this['swipe'].slide(newValue);
+							break;
+					}
+				}
+			},
+			methods : {
+				prev : function() {
+				
+					this['swipe'].prev();
+				},
+				next : function() {
+					this['swipe'].next();
+				}
+			}
+		});
+
+	</script>
+
+</foxui-element>
