@@ -22,7 +22,7 @@
 				index : parseInt(this.index) || 0,
 				speed : parseInt(this.speed) || 400,
 				auto : parseInt(this.auto) || 3000,
-				continuous : this.loop || true,
+				continuous : this.loop ==="true" ? true : false,
 				disableScroll : false,
 				stopPropagation : false,
 				callback : function(index, elem) {
@@ -54,7 +54,7 @@
 
 			lifecycle : {
 				created : function() {
-
+                    this.indicator  = this.indicator === "true"?true:false;
 				},
 				inserted : function() {
 					setup.call(this);
