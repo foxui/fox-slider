@@ -7,6 +7,8 @@ fox-slider {
 #fox-slider-inner {
 	overflow: hidden;
 	position: relative;
+	height: 100%;
+	
 }
 
 #fox-slider-container {
@@ -19,10 +21,11 @@ fox-slider {
 	overflow: hidden;
 }
 
-#fox-slider-inner > div {
+#fox-slider-inner fox-slider-item{
 	float: left;
 	width: 100%;
 	position: relative;
+	height: 100%;
 }
 
 #fox-slider-indicator {
@@ -41,4 +44,3 @@ fox-slider {
 #fox-slider-indicator span.active {
 	background: rgba(255,255,255,1);
 }
-

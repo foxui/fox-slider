@@ -1,21 +1,23 @@
 <fox-element name="fox-slider" attributes="auto loop speed index indicator">
-	<fox-template>
-		<div id="fox-slider-container">
-			<div id="fox-slider-inner">
-				<content></content>
-			</div>
-		</div>
-		<div id="fox-slider-indicator" rv-show="indicator">
-			<span rv-each-todo="arrIndicator"> </span>
-		</div>
-	</fox-template>
+    <fox-template>
+        <div id="fox-slider-container">
+            <div id="fox-slider-inner">
+                <content></content>
+            </div>
+        </div>
+        <div id="fox-slider-indicator" rv-show="indicator">
+            <span rv-each-todo="arrIndicator"> </span>
+        </div>
+    </fox-template>
 
-	<script src="swipe.js"></script>
-	<script>
-		
+    <script src="swipe.js"></script>
+    <script>
 		function setup() {
 			var self = this;
-			
+			if (this['swipe']) {
+				this['swipe'].kill();
+			}
+
 			this['swipe'] = new Swipe(this.$['fox-slider-container'], {
 				index : parseInt(this.index) || 0,
 				speed : parseInt(this.speed) || 400,
@@ -43,11 +45,11 @@
 			for (var i = 0; i < this.$['fox-slider-inner'].childElementCount; i++) {
 				arrIndicator.push("11");
 			}
-
 			this.arrIndicator = arrIndicator;
 			$("span", self.$['fox-slider-indicator']).removeClass("active").eq(this.index).addClass("active");
+
 		}
-		
+
 		fox('fox-slider', {
 
 			lifecycle : {
@@ -55,38 +57,25 @@
 
 				},
 				inserted : function() {
-					
 					setup.call(this);
 				},
-				attributeChanged : function(attr, oldVal, newVal) {
-					
-					/*
-					switch(attr) {
-											case 'speed':
-												this['swipe'].setSpeed(newValue);
-												break;
-											case 'auto':
-												this['swipe'].setDelay(newValue);
-												break;
-											case 'index':
-												this['swipe'].slide(newValue);
-												break;
-										}*/
-					
+				speedChanged : function(oldVal, newVal) {
+					this['swipe'].setSpeed(newVal);
 				},
-				speedChanged:function(oldVal, newVal){
-				   this['swipe'].setSpeed(newVal);
+				autoChanged : function(oldVal, newVal) {
+					this['swipe'].setDelay(newVal);
 				},
-				autoChanged:function(oldVal, newVal){
-				    this['swipe'].setDelay(newVal);
-				},
-				indexChanged:function(oldVal, newVal){
-				    this['swipe'].slide(newVal);
+				indexChanged : function(oldVal, newVal) {
+					this['swipe'].slide(newVal);
 				}
 			},
 			methods : {
+
+				setup : function() {
+					setup.call(this);
+				},
 				prev : function() {
-				
+
 					this['swipe'].prev();
 				},
 				next : function() {
@@ -95,6 +84,6 @@
 			}
 		});
 
-	</script>
+    </script>
 
-</foxui-element>
+</fox-element>
