@@ -2,7 +2,6 @@
   "name": "fox-slider",
   "private": true,
   "dependencies": {
-    "fox-core": "https://github.com/foxui/fox-core.git#0.1.0"
-  },
-  "version": "0.1.0"
+    "fox-core": "https://github.com/foxui/fox-core.git"
+  }
 }
