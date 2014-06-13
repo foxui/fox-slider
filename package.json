@@ -1,0 +1,51 @@
+{
+  "name": "fox-slider",
+  "description": "Assemble mobile apps easily with components.",
+  "version": "0.1.0",
+  "keywords": [
+    "css",
+    "fonts",
+    "ios",
+    "android",
+    "mobile",
+    "prototype",
+    "components"
+  ],
+  "homepage": "https://github.com/foxui",
+  "author": "fex-team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foxui/fox-slider.git"
+  },
+  "bugs": {
+    "url": "https://github.com/foxui/fox-slider/issues"
+  },
+  "license": "BSD",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-csslint": "~0.2.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-sass": "~0.7.3",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-qunit": "~0.4.0",
+    "grunt-csscomb": "~2.0.1",
+    "grunt-html-validation": "~0.1.17",
+    "grunt-jekyll": "~0.4.2",
+    "grunt-jscs-checker": "~0.4.4",
+    "grunt-sed": "~0.1.1",
+    "load-grunt-tasks": "~0.4.0",
+    "time-grunt": "~0.3.1",
+    "qunitjs": "~1.14.0"
+  },
+  "engines": {
+    "node": "~0.10.1"
+  }
+}
