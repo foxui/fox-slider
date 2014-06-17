@@ -17,12 +17,13 @@
 			if (this['swipe']) {
 				this['swipe'].kill();
 			}
+			var index = parseInt(this.index) || 0;
 
 			this['swipe'] = new Swipe(this.$['fox-slider-container'], {
-				index : parseInt(this.index) || 0,
+				index : index,
 				speed : parseInt(this.speed) || 400,
 				auto : parseInt(this.auto) || 3000,
-				continuous : this.loop ==="true" ? true : false,
+				continuous : this.loop === "true" ? true : false,
 				disableScroll : false,
 				stopPropagation : false,
 				callback : function(index, elem) {
@@ -43,10 +44,10 @@
 			var arrIndicator = [];
 
 			for (var i = 0; i < this.$['fox-slider-inner'].childElementCount; i++) {
-				arrIndicator.push("11");
+				arrIndicator.push("");
 			}
 			this.arrIndicator = arrIndicator;
-			$("span", self.$['fox-slider-indicator']).removeClass("active").eq(this.index).addClass("active");
+			$("span", self.$['fox-slider-indicator']).removeClass("active").eq(index).addClass("active");
 
 		}
 
@@ -54,7 +55,7 @@
 
 			lifecycle : {
 				created : function() {
-                    this.indicator  = this.indicator === "true"?true:false;
+					this.indicator = this.indicator === "true" ? true : false;
 				},
 				inserted : function() {
 					setup.call(this);
@@ -72,6 +73,7 @@
 			methods : {
 
 				setup : function() {
+
 					setup.call(this);
 				},
 				prev : function() {
