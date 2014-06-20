@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>fox-slider</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- 2. Load the component using an HTML Import -->
+        <link rel="stylesheet" href="../../fox-core/dist/foxui.css"/>
+        <script src="../../fox-core/dist/foxui.js"></script>
+       
+        <link rel="stylesheet" href="../dist/fox-slider.css">
+        <link rel="import" href="../dist/fox-slider.html">
+        <style>
+			fox-slider fox-slider-item {
+				position: relative;
+			}
+			fox-slider {
+				display: block;
+				-webkit-transform: translate3d(0,0,0)
+			}
+			fox-slider .img, fox-slider a {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+			}
+			fox-slider .img {
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center center;
+			}
+
+			fox-slider .title {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 40px;
+				line-height: 40px;
+				background: rgba(0,0,0,0.7);
+				z-index: 1;
+				padding: 0 10px;
+				color: #fff;
+				font-size: 14px;
+			}
+
+        </style>
+    </head>
+    <body>
+        
+        <fox-slider id="slider1" auto="3000" loop="true" speed="400"  indicator="true" style="height: 200px;" >
+            <fox-json json='[{"title":"item1","img":"images/1.png","link":"http://www.baidu.com"},{"title":"item2","img":"images/2.png","link":"http://www.baidu.com"},{"title":"item3","img":"images/3.png","link":"http://www.baidu.com"}]'></fox-json>
+            <fox-slider-item rv-each-data="data">
+                <div class="img" rv-background-image="data.img"></div>
+                <div class="title">
+                    {data.title}
+                </div>
+                <a rv-if="data.link" rv-href="data.link"></a>
+            </fox-slider-item>
+        </fox-slider>
+
+        <a href="#" onclick="onPrev()"> prev </a>
+        <a href="#" onclick="onNext()"> next </a>
+
+        <a href="#" onclick="showIndicator()"> showIndicator </a>
+
+        <a href="#" onclick="hideIndicator()"> hideIndicator </a>
+
+        <div>
+            <label>speed(ms):</label>
+            <input onchange="onSpeedChange(this);" type="number" value="400"/>
+        </div>
+
+        <div>
+            <label>auto(ms):</label>
+            <input onchange="onAutoChange(this);" type="number" value="3000"/>
+        </div>
+
+        <div>
+            <label>index:</label>
+            <input onchange="onIndexChange(this);" type="number" value="0"/>
+        </div>
+
+        <p>
+            <label>changeEvent:</label>
+            <span id="changeSpan"></span>
+        </p>
+
+        <script>
+			var changeSpan = document.getElementById("changeSpan");
+			var slider;
+
+			window.addEventListener('HTMLImportsLoaded', function(e) {
+				slider = document.querySelector('#slider1');
+				slider.addEventListener('change', function(e) {
+					changeSpan.innerHTML = "index:" + e.detail.index + "<br>" + "el" + e.detail.el
+				}, false);
+			});
+
+			function onAutoChange(el) {
+				slider.auto = el.value;
+			}
+
+			function onSpeedChange(el) {
+				slider.speed = el.value;
+			}
+
+			function onIndexChange(el) {
+
+				slider.index = el.value;
+			}
+
+			function showIndicator() {
+				slider.indicator = true;
+			}
+
+			function hideIndicator() {
+				slider.indicator = false;
+			}
+
+			function onPrev() {
+				slider.prev();
+			}
+
+			function onNext() {
+				slider.next();
+			}
+
+        </script>
+
+    </body>
+</html>
