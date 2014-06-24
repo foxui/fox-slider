@@ -7,8 +7,6 @@
         <!-- 2. Load the component using an HTML Import -->
         <link rel="stylesheet" href="../../fox-core/dist/foxui.css"/>
         <script src="../../fox-core/dist/foxui.js"></script>
-       
-        <link rel="stylesheet" href="../dist/fox-slider.css">
         <link rel="import" href="../dist/fox-slider.html">
         <style>
 			fox-slider fox-slider-item {
@@ -51,6 +49,17 @@
         
         <fox-slider id="slider1" auto="3000" loop="true" speed="400"  indicator="true" style="height: 200px;" >
             <fox-json json='[{"title":"item1","img":"images/1.png","link":"http://www.baidu.com"},{"title":"item2","img":"images/2.png","link":"http://www.baidu.com"},{"title":"item3","img":"images/3.png","link":"http://www.baidu.com"}]'></fox-json>
+            <fox-slider-item rv-each-data="data">
+                <div class="img" rv-background-image="data.img"></div>
+                <div class="title">
+                    {data.title}
+                </div>
+                <a rv-if="data.link" rv-href="data.link"></a>
+            </fox-slider-item>
+        </fox-slider>
+        
+        <fox-slider id="slider" auto="3000" loop="true" speed="400"  indicator="true" style="height: 200px;" >
+            <fox-json json='[{"title":"item3","img":"images/3.png","link":"http://www.baidu.com"}]'></fox-json>
             <fox-slider-item rv-each-data="data">
                 <div class="img" rv-background-image="data.img"></div>
                 <div class="title">

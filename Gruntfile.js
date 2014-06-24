@@ -72,8 +72,8 @@ module.exports = function(grunt) {
     copy: {
       css: {
         expand: true,
-        cwd: 'css/',
-        src: '*.css',
+        cwd: 'src/',
+        src: 'css/*.css',
         dest: '<%= meta.distPath %>'
       },
       tags: {
@@ -90,8 +90,8 @@ module.exports = function(grunt) {
         keepSpecialComments: '*' // set to '*' because we already add the banner in sass
       },
       foxui: {
-        src: '<%= meta.distPath %><%= pkg.name %>.css',
-        dest: '<%= meta.distPath %><%= pkg.name %>.min.css'
+        src: '<%= meta.distPath %>/css/<%= pkg.name %>.css',
+        dest: '<%= meta.distPath %>/css/<%= pkg.name %>.min.css'
       }
     },
 
