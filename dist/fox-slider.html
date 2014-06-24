@@ -1,7 +1,7 @@
 <link rel="import" href="../../fox-json/dist/fox-json.html">
 <link rel="stylesheet" href="css/fox-slider.css">
 <fox-element name="fox-slider" attributes="auto loop speed index indicator">
-    <fox-template>
+    <tpl>
         <div id="fox-slider-container">
             <div id="fox-slider-inner">
                 <content></content>
@@ -10,7 +10,7 @@
         <div id="fox-slider-indicator" rv-show="indicator">
             <span rv-each-todo="arrIndicator"> </span>
         </div>
-    </fox-template>
+    </tpl>
 
     <script src="../lib/swipe.js"></script>
     <script>
