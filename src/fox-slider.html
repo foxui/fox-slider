@@ -1,27 +1,63 @@
 <link rel="import" href="../../fox-json/dist/fox-json.html">
 <link rel="stylesheet" href="css/fox-slider.css">
-<fox-element name="fox-slider" attributes="auto loop speed index indicator">
-    <tpl>
-        <div id="fox-slider-container">
-            <div id="fox-slider-inner">
-                <content></content>
-            </div>
-        </div>
-        <div id="fox-slider-indicator" rv-show="indicator">
-            <span rv-each-todo="arrIndicator"> </span>
-        </div>
-    </tpl>
 
-    <script src="../lib/swipe.js"></script>
-    <script>
+<fox-element name="fox-slider-container">
+
+	<tpl>
+		<div id="fox-slider-container">
+		
+			<content></content>
+			
+		</div>
+	</tpl>
+	
+	<script>
+		
+		fox("fox-slider-container",{
+			lifecycle : {
+				created : function() {
+					
+				}
+			},
+			methods:{
+				getSliderItemCount:function(){
+					return this.$['fox-slider-container'].childElementCount;
+				}
+			}
+			
+			
+		});
+	</script>
+
+</fox-element>
+
+<fox-element name="fox-slider" attributes="auto loop speed index indicator">
+	<tpl>
+		<content></content>
+		<div id="fox-slider-indicator" rv-show="indicator">
+			<span rv-each-todo="arrIndicator"> </span>
+		</div>
+	</tpl>
+
+	<script src="../lib/swipe.js"></script>
+	<script>
 		function setup() {
 			var self = this;
 			if (this['swipe']) {
 				this['swipe'].kill();
 			}
+			
+			var container = this.querySelector("fox-slider-container");
+			
+			if(!container){
+				throw new Error('fox-slider-container not defined in fox-slider!'); 
+				return;
+			}
+
+
 			var index = parseInt(this.index) || 0;
 
-			this['swipe'] = new Swipe(this.$['fox-slider-container'], {
+			this['swipe'] = new Swipe(container, {
 				index : index,
 				speed : parseInt(this.speed) || 400,
 				auto : parseInt(this.auto) || 3000,
@@ -45,7 +81,7 @@
 
 			var arrIndicator = [];
 
-			for (var i = 0; i < this.$['fox-slider-inner'].childElementCount; i++) {
+			for (var i = 0; i < container.getSliderItemCount(); i++) {
 				arrIndicator.push("");
 			}
 			this.arrIndicator = arrIndicator;
@@ -57,10 +93,16 @@
 
 			lifecycle : {
 				created : function() {
+
 					this.indicator = this.indicator === "true" ? true : false;
+					setup.call(this);
+					this.addEventListener("data-change", function(e) {
+						setup.call(this);
+					}, false);
+
 				},
 				inserted : function() {
-					setup.call(this);
+
 				},
 				speedChanged : function(oldVal, newVal) {
 					this['swipe'].setSpeed(newVal);
@@ -88,6 +130,6 @@
 			}
 		});
 
-    </script>
+	</script>
 
 </fox-element>

@@ -8,20 +8,15 @@ fox-slider {
 	overflow: hidden;
 	position: relative;
 	height: 100%;
-	
 }
 
 #fox-slider-container {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	visibility: hidden;
 	overflow: hidden;
+	position: relative;
+	height: 100%;
 }
 
-#fox-slider-inner fox-slider-item{
+fox-slider-item {
 	float: left;
 	width: 100%;
 	position: relative;
@@ -43,4 +38,10 @@ fox-slider {
 }
 #fox-slider-indicator span.active {
 	background: rgba(255,255,255,1);
+}
+fox-slider-container {
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+	display: block;
 }
