@@ -56,9 +56,8 @@
 
 
 			var index = parseInt(this.index) || 0;
-
 			this['swipe'] = new Swipe(container, {
-				index : index,
+				startSlide : index,
 				speed : parseInt(this.speed) || 400,
 				auto : parseInt(this.auto) || 3000,
 				continuous : this.loop === "true" ? true : false,
@@ -97,6 +96,7 @@
 					this.indicator = this.indicator === "true" ? true : false;
 					setup.call(this);
 					this.addEventListener("data-change", function(e) {
+					
 						setup.call(this);
 					}, false);
 
