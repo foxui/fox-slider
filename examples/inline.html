@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>fox-slider</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!-- 2. Load the component using an HTML Import -->
+		<link rel="stylesheet" href="../../fox-core/dist/foxui.css"/>
+		<script src="../../fox-core/dist/foxui.js"></script>
+
+		<link rel="import" href="../../fox-ajax/dist/fox-ajax.html">
+		<link rel="import" href="../src/fox-slider.html">
+		<link rel="import" href="../../fox-template/dist/fox-template.html">
+		<style>
+			fox-slider fox-slider-item {
+				position: relative;
+			}
+			fox-slider {
+				display: block;
+				-webkit-transform: translate3d(0,0,0)
+			}
+			fox-slider .img, fox-slider a {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+			}
+			fox-slider .img {
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center center;
+			}
+
+			fox-slider .title {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 40px;
+				line-height: 40px;
+				background: rgba(0,0,0,0.7);
+				z-index: 1;
+				padding: 0 10px;
+				color: #fff;
+				font-size: 14px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<script>
+			$(function(){
+				setTimeout(function(){
+					
+				},2000);
+				$('<fox-slider style="height: 180px;"><fox-template><fox-ajax auto url=http://fuhua.baidu.com:8080/ds/api/query?ds_id=ds_wMpvLE dataType=jsonp></fox-ajax><fox-slider-container><fox-slider-item rv-each-item=data><div class=img rv-background-image=item.img></div></fox-slider-item></fox-slider-container></fox-template></fox-slider>').appendTo("body");
+			});
+		</script>
+
+	</body>
+</html>
