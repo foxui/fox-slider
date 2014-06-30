@@ -93,16 +93,16 @@
 			lifecycle : {
 				created : function() {
 
+					
+
+				},
+				inserted : function() {
 					this.indicator = this.indicator === "true" ? true : false;
 					setup.call(this);
 					this.addEventListener("data-change", function(e) {
 					
 						setup.call(this);
 					}, false);
-
-				},
-				inserted : function() {
-
 				},
 				speedChanged : function(oldVal, newVal) {
 					this['swipe'].setSpeed(newVal);
