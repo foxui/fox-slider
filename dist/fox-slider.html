@@ -97,12 +97,16 @@
 
 				},
 				inserted : function() {
-					this.indicator = this.indicator === "true" ? true : false;
-					setup.call(this);
-					this.addEventListener("data-change", function(e) {
+					var self = this;
+					setTimeout(function(){
+						self.indicator = self.indicator === "true" ? true : false;
+						setup.call(self);
+						self.addEventListener("data-change", function(e) {
+							
+							setup.call(self);
+						}, false);
+					},0);
 					
-						setup.call(this);
-					}, false);
 				},
 				speedChanged : function(oldVal, newVal) {
 					this['swipe'].setSpeed(newVal);

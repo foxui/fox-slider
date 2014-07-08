@@ -7,6 +7,7 @@
 		<!-- 2. Load the component using an HTML Import -->
 		<link rel="stylesheet" href="../../fox-core/dist/foxui.css"/>
 		<script src="../../fox-core/dist/foxui.js"></script>
+		<script src="../../fox-core/src/register.js"></script>
 		<link rel="import" href="../../fox-template/dist/fox-template.html">
 		<link rel="import" href="../../fox-json/dist/fox-json.html">
 		<link rel="import" href="../src/fox-slider.html">
@@ -95,7 +96,7 @@
 			var slider;
 
 			window.addEventListener('HTMLImportsLoaded', function(e) {
-				slider = document.querySelector('#slider1');
+				slider = document.querySelector('#slider');
 				slider.addEventListener('change', function(e) {
 					changeSpan.innerHTML = "index:" + e.detail.index + "<br>" + "el" + e.detail.el
 				}, false);
