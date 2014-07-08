@@ -99,13 +99,14 @@
 				inserted : function() {
 					var self = this;
 					setTimeout(function(){
+					
 						self.indicator = self.indicator === "true" ? true : false;
 						setup.call(self);
 						self.addEventListener("data-change", function(e) {
 							
 							setup.call(self);
 						}, false);
-					},0);
+					},50);
 					
 				},
 				speedChanged : function(oldVal, newVal) {

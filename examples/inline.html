@@ -49,12 +49,13 @@
 		</style>
 	</head>
 	<body>
+		<fox-slider id=slider auto=3000 loop=true speed=400 indicator=true style="height: 180px;"><fox-template><fox-json json='[{"title":"item1","img":"images/1.png","link":"http://www.baidu.com"},{"title":"item2","img":"images/2.png","link":"http://www.baidu.com"},{"title":"item3","img":"images/3.png","link":"http://www.baidu.com"}]'></fox-json><fox-slider-container><fox-slider-item rv-each-data=data><div class=img rv-background-image=data.img></div><div class=title>{data.title}</div><a rv-if=data.link rv-href=data.link></a></fox-slider-item></fox-slider-container></fox-template></fox-slider>
 		<script>
 			$(function(){
 				setTimeout(function(){
-					
-				},2000);
-				$('<fox-slider style="height: 180px;"><fox-template><fox-ajax auto url=http://fuhua.baidu.com:8080/ds/api/query?ds_id=ds_wMpvLE dataType=jsonp></fox-ajax><fox-slider-container><fox-slider-item rv-each-item=data><div class=img rv-background-image=item.img></div></fox-slider-item></fox-slider-container></fox-template></fox-slider>').appendTo("body");
+					$('<fox-slider id=slider auto=3000 loop=true speed=400 indicator=true style="height: 180px;"><fox-template><fox-json json=\'[{"title":"item1","img":"images/1.png","link":"http://www.baidu.com"},{"title":"item2","img":"images/2.png","link":"http://www.baidu.com"},{"title":"item3","img":"images/3.png","link":"http://www.baidu.com"}]\'></fox-json><fox-slider-container><fox-slider-item rv-each-data=data><div class=img rv-background-image=data.img></div><div class=title>{data.title}</div><a rv-if=data.link rv-href=data.link></a></fox-slider-item></fox-slider-container></fox-template></fox-slider>').appendTo("body");	
+				},0);
+				
 			});
 		</script>
 
